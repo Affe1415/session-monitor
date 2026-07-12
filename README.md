@@ -189,7 +189,7 @@ Windows icon assets are generated into `build/`.
 To regenerate icons:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File scripts\generate-icons.ps1
+powershell -ExecutionPolicy Bypass -File scripts\normalize-icon.ps1
 ```
 
 Generated files include:

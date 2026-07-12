@@ -29,16 +29,15 @@ let isQuitting = false;
 const WINDOW_WIDTH = 420;
 const WINDOW_HEIGHT = 760;
 
+function getAppIconPath(): string {
+  return app.isPackaged
+    ? path.join(process.resourcesPath, 'icon.ico')
+    : path.join(process.cwd(), 'build', 'icon.ico');
+}
+
 function createTrayIcon(): Electron.NativeImage {
-  const size = 16;
-  const canvas = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 16 16">
-      <circle cx="8" cy="8" r="7" fill="#2ECC71"/>
-      <circle cx="8" cy="8" r="3" fill="#0E1117"/>
-    </svg>
-  `;
-  const dataUrl = `data:image/svg+xml;base64,${Buffer.from(canvas).toString('base64')}`;
-  return nativeImage.createFromDataURL(dataUrl);
+  const icon = nativeImage.createFromPath(getAppIconPath());
+  return icon.isEmpty() ? nativeImage.createEmpty() : icon.resize({ width: 16, height: 16 });
 }
 
 function createTray(): void {
@@ -173,6 +172,7 @@ function createWindow(): void {
     skipTaskbar: false,
     hasShadow: true,
     roundedCorners: true,
+    icon: getAppIconPath(),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
