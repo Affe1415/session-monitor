@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Bell, RefreshCw, Volume2 } from 'lucide-react';
 import { ACCENT_COLORS, ALL_MARKET_IDS } from '../constants/settings';
 import { MARKETS } from '../services/marketHours';
+import { FlagIcon } from './FlagIcon';
 import type { AppSettings, MarketId } from '../types';
 
 interface SettingsPageProps {
@@ -123,7 +124,7 @@ export function SettingsPage({ settings, onUpdate, onClose }: SettingsPageProps)
                       : 'border-white/[0.08] text-text-secondary hover:bg-white/5'
                   }`}
                 >
-                  <span>{market.flag}</span>
+                  <FlagIcon countryCode={market.countryCode} className="h-5 w-5" />
                   <span>{market.name}</span>
                 </motion.button>
               );

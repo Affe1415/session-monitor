@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { StatusBadge } from './StatusBadge';
 import { AnimatedClock } from './AnimatedClock';
+import { FlagIcon } from './FlagIcon';
 import type { MarketState } from '../types';
 
 interface MarketRowProps {
@@ -24,7 +25,10 @@ export function MarketRow({ market, compact, index }: MarketRowProps) {
         compact ? 'py-2.5' : 'py-3.5'
       } ${market.isOverlapping ? 'bg-blue/5 border-l-2 border-l-blue/50' : ''}`}
     >
-      <span className={`${compact ? 'text-base' : 'text-lg'}`}>{market.flag}</span>
+      <FlagIcon
+        countryCode={market.countryCode}
+        className={compact ? 'h-7 w-7' : 'h-8 w-8'}
+      />
 
       <div className="min-w-0 flex-1">
         <div className="flex items-baseline gap-2">
