@@ -95,6 +95,7 @@
     },
     "nsis": {
       "artifactName": "SessionMonitorSetup.exe",
+      "include": "build/installer.nsh",
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
